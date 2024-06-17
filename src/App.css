@@ -1,0 +1,96 @@
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px !important;
+}
+
+/* .tbl thead {
+  background: #424949;
+  color: #fff;
+} */
+
+.tbl thead tr th {
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  letter-spacing: 0.1rem;
+  vertical-align: top;
+  border: 0.1px solid #aab7b8;
+  text-align: center;
+}
+
+.tbl tbody tr td {
+  font-size: 14px;
+  padding: 0.3rem;
+  letter-spacing: 0.1rem;
+  font-weight: normal;
+  text-align: center;
+  border: 0.1px solid #aab7b8;
+}
+
+/* .tbl tr:nth-child(even) {
+  background: #ccc;
+} */
+
+/* .tbl tr:hover td {
+  background: #839192;
+  color: #000;
+  transform: all 0.3s ease-in;
+  cursor: pointer;
+} */
+
+
+
+@media (max-width:768px) {
+  .tbl thead {
+    display: none;
+  }
+
+  .tbl tbody td {
+    display: block;
+    width: 100%;
+  }
+
+  .tbl tbody tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .tbl tbody tr td {
+    text-align: right;
+    position: relative;
+    font-size: 12px;
+    padding: 5px;
+    border-bottom: 0.2px solid #f6f2f2;
+  }
+
+  .tbl td::before {
+    content: attr(data-lable);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    padding: 0 10px;
+  }
+
+  .itemParPageStyle {
+    display: none !important;
+  }
+
+  .logoBar {
+    display: none !important;
+  }
+
+}
+
+/* @media screen and (max-width: 991px) {
+  .nav_open {
+    overflow: hidden !important;
+  }
+
+} */
+
+.enabled-date {
+  background-color: #ff0000a1 !important;
+  color: white !important;
+}

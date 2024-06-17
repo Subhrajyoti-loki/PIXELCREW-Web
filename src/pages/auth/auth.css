@@ -1,0 +1,31 @@
+/* auth style */
+.loginStyle {
+    background: #efefee;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh;
+}
+
+.wrapperLogin {
+    background: #fff;
+    width: 450px;
+    border-radius: 5px;
+    padding: 60px 15px;
+}
+
+
+.registerStyle {
+    background: #efefee;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh;
+}
+
+.wrapperRegister{
+    background: #fff;
+    width: 630px;
+    border-radius: 5px;
+    padding: 60px 15px;
+}

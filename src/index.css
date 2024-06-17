@@ -1,0 +1,30 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    list-style: none;
+  }
+  
+  
+  /* For WebKit-based browsers (Chrome, Safari, etc.) */
+  /* Customize the track */
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Customize the thumb (the draggable part) */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+  }
+  
+  html {
+    scrollbar-width: thin;
+  }
+  
+  html {
+    scrollbar-color: #888 auto;
+  }
