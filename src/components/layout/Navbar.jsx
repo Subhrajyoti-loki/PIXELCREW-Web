@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getUsers, getUserNotifiacton } from "../../api/api";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -175,6 +175,9 @@ const Navbar = () => {
   const userId = localStorage.getItem("userid");
   const [userData, setUserData] = useState(null);
   const [Data, setData] = useState(null);
+  const menuRef = useRef(null);
+  const notifRef = useRef(null);
+  const profileRef = useRef(null);
 
   // Fetch user data
   const fetchData = async () => {
@@ -244,18 +247,39 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
+  const handleClickOutside = (event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      notifRef.current &&
+      !notifRef.current.contains(event.target) &&
+      profileRef.current &&
+      !profileRef.current.contains(event.target)
+    ) {
+      setMenuOpen(false);
+      setNotifOpen(false);
+      setProfileOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <NavbarContainer>
-      <MenuIcon onClick={handleMenuToggle}>
+      <MenuIcon onClick={handleMenuToggle} ref={menuRef}>
         <FaBars size={24} />
       </MenuIcon>
-      {/* <Logo>Pixel Crew</Logo> */}
       <Icons>
-        <div onClick={handleNotifToggle}>
+        <div onClick={handleNotifToggle} ref={notifRef}>
           <FaBell size={24} />
           <span className="notification">{Data?.notificationCount || 0}</span>
         </div>
-        <div className="avatar-sm" onClick={handleProfileToggle}>
+        <div className="avatar-sm" onClick={handleProfileToggle} ref={profileRef}>
           {userData?.avatar ? (
             <img
               src={userData.avatar}
@@ -313,7 +337,6 @@ const Navbar = () => {
           </div>
         </li>
       </NotificationDropdown>
-
       <ProfileDropdown open={profileOpen}>
         <ProfileDropdownItem>
           <Link className="profile-pic" onClick={handleProfileToggle}>
@@ -356,7 +379,7 @@ const Navbar = () => {
             Gallery
           </Link>
           <div className="dropdown-divider" />
-          <a className="dropdown-item " >
+          <a className="dropdown-item">
             <button
               type="button"
               className="btn btn-outline-dark btn-xs"

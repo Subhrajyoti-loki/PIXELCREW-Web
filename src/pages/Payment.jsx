@@ -8,6 +8,7 @@ const razorpayid = process.env.REACT_APP_RAZORPAY_KEY_ID;
 const Payment = () => {
   const [userBooking, setUserBooking] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [payButtonLoading, setPayButtonLoading] = useState(null); // To track loading state of Pay Now button
 
   const fetchData = async () => {
     try {
@@ -40,11 +41,14 @@ const Payment = () => {
   };
 
   const displayRazorpay = async (booking) => {
+    setPayButtonLoading(booking._id); // Set loading state for the current booking
+
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
     if (!res) {
       alert("Razorpay SDK failed to load. Are you online?");
+      setPayButtonLoading(null); // Reset loading state
       return;
     }
 
@@ -79,6 +83,7 @@ const Payment = () => {
         await VerifyPayment(data);
         alert("Payment Successful");
         fetchData();
+        setPayButtonLoading(null); // Reset loading state
       },
       prefill: {
         name: booking.userId.fullname,
@@ -91,10 +96,18 @@ const Payment = () => {
       theme: {
         color: "#6610f2",
       },
+      modal: {
+        ondismiss: () => {
+          setPayButtonLoading(null); // Reset loading state on cancel
+        },
+      },
     };
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+    paymentObject.on('payment.failed', function (response){
+      setPayButtonLoading(null); // Reset loading state on failure
+    });
   };
 
   return (
@@ -175,6 +188,10 @@ const Payment = () => {
                     >
                       <button
                         className="btn"
+                        disabled={
+                          booking?.totalAmount === booking?.paidAmount ||
+                          payButtonLoading === booking._id
+                        }
                         style={{
                           backgroundColor: "#ffffff00",
                           color: "#ffffff",
@@ -185,7 +202,7 @@ const Payment = () => {
                         }}
                         onClick={() => displayRazorpay(booking)}
                       >
-                        Pay Now
+                        {payButtonLoading === booking._id ? "Loading..." : "Pay Now"}
                       </button>
                     </div>
                   </div>

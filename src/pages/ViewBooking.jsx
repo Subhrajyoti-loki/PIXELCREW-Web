@@ -42,6 +42,9 @@ function ViewBooking() {
     navigate("/mybooking");
   };
 
+  const handlePayment = () => {
+    navigate("/payment");
+  };
   return (
     <div className="wrapper">
       <Navbar />
@@ -120,25 +123,40 @@ function ViewBooking() {
                           className="mt-3"
                           style={{ marginBottom: "1.5rem" }}
                         >
-                          <h5
-                            style={{
-                              fontSize: "1.125rem",
-                              fontWeight: "600",
-                              color: "#4e73df",
-                            }}
-                          >
-                            Customer Details
-                          </h5>
-                          <p style={{ margin: "0.5rem 0" }}>
-                            <strong>Name:</strong> {viewdata.userId.fullname}
-                          </p>
-                          <p style={{ margin: "0.5rem 0" }}>
-                            <strong>Email:</strong> {viewdata.userId.email}
-                          </p>
-                          <p style={{ margin: "0.5rem 0" }}>
-                            <strong>Mobile:</strong> {viewdata.userId.mobile}
-                          </p>
+                          <div className="row">
+                            <div className="col-12 col-md-8">
+                              <h5
+                                style={{
+                                  fontSize: "1.125rem",
+                                  fontWeight: "600",
+                                  color: "#4e73df",
+                                }}
+                              >
+                                Customer Details
+                              </h5>
+                              <p style={{ margin: "0.5rem 0" }}>
+                                <strong>Name:</strong>{" "}
+                                {viewdata.userId.fullname}
+                              </p>
+                              <p style={{ margin: "0.5rem 0" }}>
+                                <strong>Email:</strong> {viewdata.userId.email}
+                              </p>
+                              <p style={{ margin: "0.5rem 0" }}>
+                                <strong>Mobile:</strong>{" "}
+                                {viewdata.userId.mobile}
+                              </p>
+                            </div>
+                            <div className=" col-md-12 d-flex justify-content-md-end mt-3 mt-md-0">
+                              <button
+                                className="btn btn-secondary"
+                                onClick={handlePayment}
+                              >
+                                <span>Payment</span>
+                              </button>
+                            </div>
+                          </div>
                         </div>
+
                         <div
                           className="mt-3"
                           style={{ marginBottom: "1.5rem" }}
