@@ -28,13 +28,12 @@ const App = () => {
     <>
       <Routes>
 
-      <Route path="/" element={<Navigate to="/home" />} />
+       <Route path="/" element={<Home />} />
       
         {/* Admin Page! */}
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/support" element={<Support />} />
         <Route path="/contactus" element={<ContactUS />} />
         <Route path="/gallery" element={<Gallery/>} />

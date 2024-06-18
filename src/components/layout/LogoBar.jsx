@@ -3,7 +3,7 @@ import React from 'react';
 const LogoBar = () => {
     return (
         <div className="logo-header " data-background-color="purple2">
-            <a href="/Home" className="h5 text-white fw-bold my-auto text-decoration-none btn  mx-1">
+            <a href="/" className="h5 text-white fw-bold my-auto text-decoration-none btn  mx-1">
                 PIXELCREW
             </a>
             <button className="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

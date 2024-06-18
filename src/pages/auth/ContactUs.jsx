@@ -179,7 +179,7 @@ const ContactUs = () => {
             </div>
             <div className="login-account" style={{ textAlign: "center" }}>
               <span className="msg text-warning">Already Contact Us?</span>
-              <Link to="/home" id="show-login" className="link text-white">
+              <Link to="/" id="show-login" className="link text-white">
                 Home
               </Link>
             </div>
@@ -195,7 +195,7 @@ const ContactUs = () => {
                 <div className="swal-title">Thank You For Contacting Us!</div>
                 <div className="swal-text">We will Get Back to You Soon!</div>
                 <div className="swal-footer">
-                  <Link to="/home" className="swal-button-container">
+                  <Link to="/" className="swal-button-container">
                     <button
                       onClick={handleModalClose}
                       className="swal-button swal-button--confirm btn btn-success"

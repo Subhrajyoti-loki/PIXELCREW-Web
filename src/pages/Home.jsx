@@ -45,7 +45,7 @@ const Home = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link"
-                  to="/home"
+                  to="/"
                   style={{
                     fontFamily: "Montserrat-light",
                     color: "#fff",
