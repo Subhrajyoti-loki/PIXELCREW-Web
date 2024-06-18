@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/layout/Navbar";
-import Sidebar from "../components/layout/Sidebar";
-import LogoBar from "../components/layout/LogoBar";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -246,12 +245,8 @@ function Feed() {
   // Render
   return (
     <div className="wrapper">
-      <div className="main-header">
-        <LogoBar />
-        <Navbar />
-      </div>
-      <Sidebar />
-      <div className="main-panel" style={{ padding: "20px  10px" }}>
+     <Navbar/>
+      <div className="container-fluid" style={{ padding: "5px  5px" }}>
         <div className="content">
           <div className="page-inner">
             <div className="row">

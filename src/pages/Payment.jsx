@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/layout/Navbar";
-import Sidebar from "../components/layout/Sidebar";
-import LogoBar from "../components/layout/LogoBar";
-import {
-  getbookbyuser,
-  Createorder,
-  VerifyPayment,
-} from "../api/api";
+import { getbookbyuser, Createorder, VerifyPayment } from "../api/api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 const razorpayid = process.env.REACT_APP_RAZORPAY_KEY_ID;
@@ -104,118 +98,103 @@ const Payment = () => {
   };
 
   return (
-    <div className="wrapper">
-      <div className="main-header">
-        <LogoBar />
-        <Navbar />
-      </div>
-      <Sidebar />
-      <div className="main-panel">
-        <div className="content">
-          <div className="page-inner">
-            <div
-              className="row"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              {loading ? (
-                <Box sx={{ width: "100%", padding: "10px" }}>
-                  <Skeleton variant="rectangular" height={118} />
-                  <Skeleton />
-                  <Skeleton animation="wave" />
-                  <Skeleton animation={false} />
-                </Box>
-              ) : userBooking && userBooking.length > 0 ? (
-                userBooking.map((booking) => (
+    <div className="wrapper d-flex flex-column">
+      <Navbar />
+      <div className="container-fluid flex-grow-1">
+        <div className="row">
+          {loading ? (
+            <Box sx={{ width: "100%", padding: "10px" }}>
+              <Skeleton variant="rectangular" height={118} />
+              <Skeleton />
+              <Skeleton animation="wave" />
+              <Skeleton animation={false} />
+            </Box>
+          ) : userBooking && userBooking.length > 0 ? (
+            userBooking.map((booking) => (
+              <div
+                key={booking?._id}
+                className="col-md-6 col-sm-12"
+                style={{ padding: "10px" }}
+              >
+                <div
+                  className="card card-dark bg-secondary-gradient"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    margin: "10px",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
                   <div
-                    key={booking?._id}
-                    className="col-md-5 col-sm-12"
-                    style={{ padding: "10px" }}
+                    className="card-body bubble-shadow"
+                    style={{ padding: "20px" }}
                   >
+                    <h1 style={{ color: "#ffffff" }}>
+                      &#8377;{booking.totalAmount}
+                    </h1>
                     <div
-                      className="card card-dark bg-secondary-gradient"
                       style={{
                         display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        margin: "10px",
-                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                        alignItems: "center",
+                        marginTop: "10px",
                       }}
                     >
-                      <div
-                        className="card-body bubble-shadow"
-                        style={{ padding: "20px" }}
-                      >
-                        <h1 style={{ color: "#ffffff" }}>
-                        &#8377;{booking.totalAmount}
-                        </h1>
-                        <div
+                      <div>
+                        <h3
+                          className="card-title"
                           style={{
-                            display: "flex",
-                            alignItems: "center",
-                            marginTop: "10px",
+                            fontSize: "1.2em",
+                            margin: "0",
+                            color: "#ffffff",
+                            fontWeight: "bold",
                           }}
                         >
-                          <div>
-                            <h3
-                              className="card-title"
-                              style={{
-                                fontSize: "1.2em",
-                                margin: "0",
-                                color: "#ffffff",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {booking?.productId?.name}
-                            </h3>
-                            <p
-                              className="card-category"
-                              style={{
-                                fontSize: "0.9em",
-                                color: "#ffffff",
-                                marginTop: "5px",
-                              }}
-                            >
-                              {booking.productId.details}
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className="card-footer d-flex justify-content-between"
+                          {booking?.productId?.name}
+                        </h3>
+                        <p
+                          className="card-category"
                           style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            marginTop: "10px",
+                            fontSize: "0.9em",
+                            color: "#ffffff",
+                            marginTop: "5px",
                           }}
                         >
-                          <button
-                            className="btn"
-                            style={{
-                              backgroundColor: "#ffffff00",
-                              color: "#ffffff",
-                              border: "2px solid #ffffff",
-                              padding: "6px 10px",
-                              borderRadius: "4px",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => displayRazorpay(booking)}
-                          >
-                            Pay Now
-                          </button>
-                        </div>
+                          {booking.productId.details}
+                        </p>
                       </div>
                     </div>
+                    <div
+                      className="card-footer d-flex justify-content-between"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "10px",
+                      }}
+                    >
+                      <button
+                        className="btn"
+                        style={{
+                          backgroundColor: "#ffffff00",
+                          color: "#ffffff",
+                          border: "2px solid #ffffff",
+                          padding: "6px 10px",
+                          borderRadius: "4px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => displayRazorpay(booking)}
+                      >
+                        Pay Now
+                      </button>
+                    </div>
                   </div>
-                ))
-              ) : (
-                <p>No bookings available.</p>
-              )}
-            </div>
-          </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No bookings available.</p>
+          )}
         </div>
       </div>
     </div>

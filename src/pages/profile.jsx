@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/layout/Navbar";
-import Sidebar from "../components/layout/Sidebar";
-import LogoBar from "../components/layout/LogoBar";
 import { getUsers, editUser } from "../api/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,7 +41,7 @@ const Profile = () => {
     setEditedId(id);
     try {
       const response = await getUsers(id);
-      const userData = Array.isArray(response.data) 
+      const userData = Array.isArray(response.data)
         ? response.data[0]
         : response.data;
 
@@ -72,9 +70,7 @@ const Profile = () => {
   };
 
   // OnSubmit handler
-
   const handleSubmit = async (event) => {
-    
     event.preventDefault();
     const obj = {
       fullname,
@@ -85,7 +81,7 @@ const Profile = () => {
     try {
       const res = await editUser(editedId, obj);
       if (res.status === 200 || res.status === 201) {
-        toast.success("Your  Profile updated successfully");
+        toast.success("Your Profile updated successfully");
         setEditDrawerOpen(false);
         fetchData();
       } else {
@@ -98,30 +94,23 @@ const Profile = () => {
 
   return (
     <div className="wrapper">
-      <div className="main-header">
-        <LogoBar />
-        <Navbar />
-      </div>
-      <Sidebar />
-      <div className="main-panel">
-        <div className="content">
-          <div className="page-inner">
+      <Navbar />
+
+      <div className="content container-fluid">
+        <div className="row justify-content-center mt-3">
+          <div className="col-lg-12">
             <form>
               <div
-                className="card"
+                className="card bg-dark"
                 style={{
                   backgroundImage: `url('https://res.cloudinary.com/dq1dh4drp/image/upload/v1716689757/samples/cup-on-a-table.jpg')`,
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
                 <div className="card-body">
                   <div className="row">
-                    <div className="col-lg-4 d-flex">
+                    <div className="col-lg-4">
                       <div
                         className="card card-profile w-100"
                         style={{
@@ -535,7 +524,7 @@ const Profile = () => {
               alignItems="center"
               marginBottom={2}
             >
-              <Typography variant="h6">Edit Product</Typography>
+              <Typography variant="h6">Edit Profile</Typography>
               <IconButton
                 color="primary"
                 onClick={() => setEditDrawerOpen(false)}
@@ -553,7 +542,6 @@ const Profile = () => {
                   className="form-control"
                   value={fullname}
                   onChange={handleChange}
-                  readOnly
                 />
               </div>
               <div className="form-group">
