@@ -180,4 +180,11 @@ export const EditStatus = async (id, data) => {
   return await api.put(`/booking/${id}/status`, data);
 };
 
+//gallery
+export const GetAllImage = async() =>{
+  return await api.get('/gallery')
+}
+export const deleteImage = async (id) => {
+  return await api.delete(`gallery/${id}`);
+};
 export default api;

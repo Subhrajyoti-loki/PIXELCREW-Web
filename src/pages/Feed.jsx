@@ -26,6 +26,7 @@ function Feed() {
   const [userData, setUserData] = useState(null);
   const [Data, setData] = useState(null);
   const [avatar, setAvatar] = useState("");
+  const [preview, setPreview] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [editId, setEditId] = useState(null);
@@ -79,7 +80,9 @@ function Feed() {
 
   // Handle avatar update
   const handleAvatarChange = (event) => {
-    setAvatar(event.target.files[0]);
+    const file = event.target.files[0];
+    setAvatar(file);
+    setPreview(URL.createObjectURL(file));
   };
 
   const handleSave = async () => {
@@ -106,6 +109,7 @@ function Feed() {
         success: "Avatar updated successfully",
         error: "Failed to update avatar",
       });
+      setPreview(null);
       fetchUserData();
     } catch (error) {
       toast.error("Error updating avatar");
@@ -245,7 +249,7 @@ function Feed() {
   // Render
   return (
     <div className="wrapper">
-     <Navbar/>
+      <Navbar />
       <div className="container-fluid" style={{ padding: "5px  5px" }}>
         <div className="content">
           <div className="page-inner">
@@ -475,14 +479,8 @@ function Feed() {
         aria-hidden="true"
       >
         <div
-          className="modal-dialog"
+          className="modal-dialog modal-dialog-centered modal-lg"
           role="document"
-          style={{
-            minWidth: "650px",
-            maxHeight: "500px",
-            width: "auto",
-            height: "auto",
-          }}
         >
           <div className="modal-content">
             <div className="modal-header">
@@ -497,8 +495,29 @@ function Feed() {
               </button>
             </div>
             <div className="modal-body">
-              <div>
-                <input type="file" onChange={handleAvatarChange} />
+              <div className="row">
+                <div className="col-md-6 d-flex allign-item-center">
+                  <input type="file" onChange={handleAvatarChange} />
+                </div>
+                {preview && (
+                  <div className="col-md-6">
+                    <div
+                      className="image-preview"
+                      style={{ border: "1px solid black", padding: "10px" }}
+                    >
+                      <img
+                        src={preview}
+                        alt="Preview"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          maxHeight: "250px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="modal-footer">

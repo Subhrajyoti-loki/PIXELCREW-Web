@@ -105,6 +105,12 @@ const AdminSidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/image">
+                <i className="fas fa-file-image" />
+                <p>Upload</p>
+              </Link>
+            </li>
+            <li className="nav-item">
               <a data-toggle="collapse" href="#settings">
                 <i className="fas fa-cog" />
                 <p>Settings</p>

@@ -18,6 +18,7 @@ import Appointments from './pages/Appointment';
 import AppointmentBill from './pages/AppointmentBill';
 import BillPrint from './pages/AppointmentBillPrint';
 import ReviewSupport from './pages/ReviewSupport';
+import AddImage from './pages/AddImage';
 import Profile from './pages/profile';
 import Feed from './pages/Feed';
 import Userbooking from './pages/MyBookig'
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/bill" element={<ProtectedRoute allowedRoles={['admin']}><AppointmentBill /></ProtectedRoute>} />
         <Route path="/billprint" element={<ProtectedRoute allowedRoles={['admin']}><BillPrint /></ProtectedRoute>} />
         <Route path="/reviewsupoort" element={<ProtectedRoute allowedRoles={['admin']}><ReviewSupport/></ProtectedRoute>}/>
+        <Route path='/image' element={<ProtectedRoute allowedRoles={['admin']}><AddImage/></ProtectedRoute>}/>
         {/* user Page! */}
         
         <Route path="/profile" element={<ProtectedRoute allowedRoles={['user', 'admin']}><Profile /></ProtectedRoute>} />      
